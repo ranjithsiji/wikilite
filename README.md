@@ -59,7 +59,16 @@ This is created from the Wikitextextract. So lot of limitation is there. But thi
 ##Credits
 -------
 
-Manojk [http://ml.wikisource.org/User:Manojk], Viswettan[http://en.wikipedia.org/wiki/User:Viswaprabha], SMC[http://smc.org.in], Santhosh Thottingal [http://wikimediafoundation.org/wiki/User:Sthottingal-WMF] Anivar [http://en.wikipedia.org/wiki/User:AniVar], and other friends in wikipedia and SMC. 
+*Manojk [http://ml.wikisource.org/User:Manojk], 
+*Viswettan[http://en.wikipedia.org/wiki/User:Viswaprabha], 
+*SMC[http://smc.org.in], 
+*Santhosh Thottingal [http://wikimediafoundation.org/wiki/User:Sthottingal-WMF] 
+*Anivar [http://en.wikipedia.org/wiki/User:AniVar], 
+*Vijayettan [https://en.wikipedia.org/wiki/User:Vijayakumarblathur]
+and other friends in wikipedia and SMC. 
+
+##Greetings
+All my greetings to wikimania 2015 [http://wikimania2015.wikimedia.org/] and all the maniacs.
 
 ##License
 ---------
