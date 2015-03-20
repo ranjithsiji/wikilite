@@ -21,7 +21,8 @@ Just go to [http://wikilite.nd4.org/]
 ##Contributors
 -------------------
 
-Ranjith Siji [https://en.wikipedia.org/wiki/User:Ranjithsiji]
+Ranjith Siji [https://en.wikipedia.org/wiki/User:Ranjithsiji] - 
+Suggessions to - ranjith dot sajeev at gmail dot com
 
 
 ##My Blog
