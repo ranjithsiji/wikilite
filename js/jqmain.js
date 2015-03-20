@@ -2,7 +2,7 @@ jQuery( document ).ready(function($) {
 	$('#searchBtn').addClass("searchRun");
 	$('#sForm').removeClass("loadingmessage");
 	$('#retBox').hide();
-	console.log( "System Ready" ); // The Jurassic Park System Ready.
+	console.log( "System Ready" ); /* The Jurassic Park System Ready.*/
 	//Adding Delay dont hurt wikipedia api.
 	$('#searchInput').on("input", throttle (function(tval){ 
 		$('#retBox').hide().empty();
@@ -24,7 +24,7 @@ jQuery( document ).ready(function($) {
 						$('#retBox').css({"left":dpos.left+"px","top": (dpos.top+37) + "px"});
 						$.each(data[1], function(i,item){
 							//console.log(item);
-							$('#retBox').append('<div class="dropInfo"><p class="dropInfoP">'+item+'</p><p class="dropInfoDesc">'+data[2][i]+'<br/><a class="barLink" href="'+data[3][i]+'">Wikipedia-></a></p></div>');
+							$('#retBox').append('<div class="dropInfo"><p class="dropInfoP">'+item+'</p><span class="dropInfoOk">[^]</span><p class="dropInfoDesc">'+data[2][i]+'<br/><a class="barLink" href="'+data[3][i]+'">Wikipedia-></a></p></div>');
 						});
 						$('#sForm').removeClass("loadingmessage");
 						$('#retBox').show();
@@ -36,24 +36,26 @@ jQuery( document ).ready(function($) {
 		}	
 	},500));
 	//Hover Just display More Information
-	$('#retBox').on('mouseover', '.dropInfo', function (event) { 
+	$('#retBox').on('click mouseover', '.dropInfo', function (event) { 
 	    var intxt=$(this).find(".dropInfoDesc").html();
 	    
 	    //alert ($(this).find(".dropInfoDesc").html());
 	    $("#retInfoBox").html(intxt)
-	    				.show();
+	    				
 
 	});	
 	//Take value to Input
-	$('#retBox').on('click', '.dropInfo', function (event) {	
-		$('#retBox').hide(); $("#retInfoBox").hide();
-		$('#searchInput').val($(this).find(".dropInfoP").html());
+	$('#retBox').on('click', '.dropInfoOk', function (event) {	
+		$('#searchInput').val($(this).parent().find(".dropInfoP").html());
 		$('#resBtn').html('<a title="Go to Wikipedia Article" href="'+$(this).find(".barLink").attr("href")+'">GO</a>');
 		$("#resBtn").show();
+		$('#retBox').hide(); 
+		$("#retInfoBox").hide();
 	});
 	//Search on Wikipedia
 	$('#searchBtn').on('click', $(this), function (event) {	
-		$('#retBox').hide(); $("#retInfoBox").hide(); 
+		$('#retBox').hide(); 
+		$("#retInfoBox").hide(); 
 		$('#searchBtn').css({"background-color":"#efbe5c","color":"#888"}).animate({"background-color":"#efbe5c","color":"#888"}, 1000);
 		$('#sForm').addClass("loadingmessage");
 		$("#resBtn").hide().empty();
@@ -82,6 +84,7 @@ jQuery( document ).ready(function($) {
 		var wikiUrls=$(this).parent().find(".readOn").attr("href");
 		var goUrl = "http://en.wikipedia.org/w/api.php?action=query&prop=extracts&exsectionformat=wiki&titles="+goTitle+"&redirects=true&format=json&callback=?";
 		$('#loadingBox ').show();
+		$('#resltBox').hide();
 		$.ajax ({
 				dataType: "json",
 				url: goUrl, 
