@@ -59,12 +59,12 @@ This is created from the Wikitextextract. So lot of limitation is there. But thi
 ##Credits
 -------
 
-*Manojk [http://ml.wikisource.org/User:Manojk], 
-*Viswettan[http://en.wikipedia.org/wiki/User:Viswaprabha], 
-*SMC[http://smc.org.in], 
-*Santhosh Thottingal [http://wikimediafoundation.org/wiki/User:Sthottingal-WMF] 
-*Anivar [http://en.wikipedia.org/wiki/User:AniVar], 
-*Vijayettan [https://en.wikipedia.org/wiki/User:Vijayakumarblathur]
+- Manojk [http://ml.wikisource.org/User:Manojk], 
+- Viswettan[http://en.wikipedia.org/wiki/User:Viswaprabha], 
+- SMC[http://smc.org.in], 
+- Santhosh Thottingal [http://wikimediafoundation.org/wiki/User:Sthottingal-WMF] 
+- Anivar [http://en.wikipedia.org/wiki/User:AniVar], 
+- Vijayettan [https://en.wikipedia.org/wiki/User:Vijayakumarblathur]
 and other friends in wikipedia and SMC. 
 
 ##Greetings
