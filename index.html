@@ -1,0 +1,38 @@
+<!doctype html>
+<!--[if IE 7 ]>		 <html class="no-js ie ie7 lte7 lte8 lte9" lang="en-US"> <![endif]-->
+<!--[if IE 8 ]>		 <html class="no-js ie ie8 lte8 lte9" lang="en-US"> <![endif]-->
+<!--[if IE 9 ]>		 <html class="no-js ie ie9 lte9>" lang="en-US"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html class="no-js" lang="en-US"> <!--<![endif]-->
+<head data-live-domain="wikilite.com">
+<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+	<title>WikiLite</title>
+
+	<meta name="author" content="Ranjithsiji">
+	<meta name="description" content="Wikilite: An attempt to create a fast and lightweight access to Wikipedia">
+
+	<meta name="viewport" content="width=device-width">
+
+	<link rel="stylesheet" href="css/style.css">
+
+	<script src="js/jquery.min.js"></script>
+	<script src="js/jqmain.js"></script>
+<meta name="generator" content="Human" />
+</head>
+<body class="wikiBody">
+	<div id="w">
+		<h1 id="mainH1">Wiki Lite</h1>
+		<p id="infoP">Just start typing to search in English Wikipedia</p>		
+		<div id="searchfield">
+			<form action="#" method="get" onsubmit="return false">
+			<p id="sForm" class="loadingmessage"><input id="searchInput" class="biginput" type="text"> <span id="resBtn"></span><a id="searchBtn">Search</a></p>
+			</form>
+		</div>
+		<div id="retBox"></div>
+		<div id="retInfoBox"></div>
+		<div id="resltBox"></div>
+		<div id="disReadBox"><p id="closeBtn">Close</p><div id="disReadBoxIn"></div></div>	
+		<div id="loadingBox"><img src="image/loading.gif" alt="Loading..."/></div>
+	</div>
+</body>
