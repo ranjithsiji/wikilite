@@ -47,7 +47,7 @@ jQuery( document ).ready(function($) {
 	//Take value to Input
 	$('#retBox').on('click', '.dropInfoOk', function (event) {	
 		$('#searchInput').val($(this).parent().find(".dropInfoP").html());
-		$('#resBtn').html('<a title="Go to Wikipedia Article" href="'+$(this).find(".barLink").attr("href")+'">GO</a>');
+		$('#resBtn').html('<a title="Go to Wikipedia Article" href="'+$(this).parent().find(".barLink").attr("href")+'">GO</a>');
 		$("#resBtn").show();
 		$('#retBox').hide(); 
 		$("#retInfoBox").hide();
