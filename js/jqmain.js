@@ -11,7 +11,7 @@ jQuery( document ).ready(function($) {
 		 //console.log($(this).val().length);
 		if ( $.trim($(this).val()) || tval.which !== 0 && !tval.ctrlKey && !tval.metaKey && !tval.altKey) {
         	//console.log($(this).val());
-        	 var wikiurl = "http://en.wikipedia.org/w/api.php?action=opensearch&search="+$(this).val()+"&format=json&callback=?";
+        	 var wikiurl = "https://en.wikipedia.org/w/api.php?action=opensearch&search="+$(this).val()+"&format=json&callback=?";
         	 $('#sForm').addClass("loadingmessage");
 				$.ajax({ 
 					dataType: "json",
@@ -59,8 +59,8 @@ jQuery( document ).ready(function($) {
 		$('#searchBtn').css({"background-color":"#efbe5c","color":"#888"}).animate({"background-color":"#efbe5c","color":"#888"}, 1000);
 		$('#sForm').addClass("loadingmessage");
 		$("#resBtn").hide().empty();
-		var wiki2="http://en.wikipedia.org/w/api.php?action=query&list=search&srsearch="+$('#searchInput').val()+"&srwhat=text&format=json&callback=?";
-		var wikigourl='http://en.wikipedia.org/wiki/';
+		var wiki2="https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch="+$('#searchInput').val()+"&srwhat=text&format=json&callback=?";
+		var wikigourl='https://en.wikipedia.org/wiki/';
 		$.ajax({ 
 					dataType: "json",
 					url: wiki2,
@@ -82,7 +82,7 @@ jQuery( document ).ready(function($) {
 	$('#resltBox').on('click','.dirRead', function (event) { 
 		var goTitle = $(this).parent().find(".readOn").attr("title");
 		var wikiUrls=$(this).parent().find(".readOn").attr("href");
-		var goUrl = "http://en.wikipedia.org/w/api.php?action=query&prop=extracts&exsectionformat=wiki&titles="+goTitle+"&redirects=true&format=json&callback=?";
+		var goUrl = "https://en.wikipedia.org/w/api.php?action=query&prop=extracts&exsectionformat=wiki&titles="+goTitle+"&redirects=true&format=json&callback=?";
 		$('#loadingBox ').show();
 		$('#resltBox').hide();
 		$.ajax ({
