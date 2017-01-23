@@ -15,7 +15,7 @@ wikilite depend on jQuery. But we can make a non jQuery version also.
 
 ##Demo
 ----
-Just go to [http://wikilite.nd4.org/]
+Just go to [http://ranjithsiji.github.io/wikilite]
 
 
 ##Contributors
