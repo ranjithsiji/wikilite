@@ -1,79 +1,97 @@
-#Wikilite 
-----------
-- Wikilite: An attempt to create a fast and lightweight access to Wikipedia.
-(It is buggy and it is a rough idea. please use with care)
+# Wikilite
 
-Wikilite is a very small programm (HTML/CSS/Javascript/Jquery) to create a simple frontend search to wikipedia. Just to access wikipedia faster. It is a rought idea to get into the right wikipedia article very quickly.
+A fast, lightweight Wikipedia reader for slow internet connections.
 
+**Demo:** <http://ranjithsiji.github.io/wikilite>
 
-##How to use it
--------------------
-Just download the files and open the index.html in your favourite browser. Make sure that your internet connnection is working and start searching. 
-Please see index.html for the programme.
+The whole app is one HTML file of about 6 KB gzipped, with no framework. It fits in the first network round trip, and later visits load it from cache.
 
-wikilite depend on jQuery. But we can make a non jQuery version also.
+## How to use it
 
-##Demo
-----
-Just go to [http://ranjithsiji.github.io/wikilite]
+1. Type in the search box. Suggestions appear as you type, or press Enter to see full results.
+2. Open a result. You get the article's introduction as text, which is usually only a few KB.
+3. Choose **Read full article** to load the rest.
+4. Choose **Close** to return to your search results, right where you left them.
 
+Tick **Images** to see the article with its pictures and links. Images only download as you scroll to them. The choice is remembered.
 
-##Contributors
--------------------
+The page is white by default. Tick **Dark** for the dark theme, and the choice is remembered.
 
-Ranjith Siji [https://en.wikipedia.org/wiki/User:Ranjithsiji] - 
-Suggessions to - ranjith dot sajeev at gmail dot com
+Use the language menu to change Wikipedia. It lists common languages, and **More languages…** loads the rest. If you switch while reading, you go to the same article in the new language when one exists.
 
+To use it without hosting, download `index.html` and open it in a browser. You still need an internet connection to reach Wikipedia.
 
-##My Blog
--------
-Smashing Web [http://smashingweb.info]
+### Data used
 
-##About Wikilite
---------------
+Measured on the English [Kerala](https://en.wikipedia.org/wiki/Kerala) article, compressed, excluding images:
 
-The Idea of creating a lightweight search frondend for wikipedia came from the question [https://meta.wikimedia.org/wiki/Talk:2015_Strategy/Community_consultation] . Will wikipedia survive for next billion users?. 
+| View | Size |
+| --- | --- |
+| Introduction, text only | 2 KB |
+| Full article, text only | 39 KB |
+| Introduction with images (plus the images shown) | 12 KB |
+| Full article with images (plus the images you scroll to) | 215 KB |
+| The same page on Wikipedia, HTML only | 357 KB |
 
-Also I stuck on the websites [http://www.wikipediaredefined.com] and [http://wikipedia.gkvasnikov.com/]. They provide new ideas to make wikipedia better. 
+## Development
 
-In a small talk Viswaettan [http://en.wikipedia.org/wiki/User:Viswaprabha] told that the new visual editior in wikipedia is dead slow. Also I feel that wikipedia is slow to load on some poor internet connections. The average bandwidth in India is 2MBPS (Lowest in Asia-Pacific) . In rural India the connection speed is much slower. So creating a quick access to wikipedia is a great Idea. The whole programme is just 120KB (Wikipedia Home Page is 80KB !!!). It is because of jQuery. It is possible to create this thing without jQuery. But this is a quick hack and created from a quick idea. So I used jquery for quick development. 
+You need Node.js. The source is in `src/`.
 
-On the other side is you can download the whole pacakge in a zip file and just open the index.html with your favourite browser and go on. 
+```sh
+npm install
+npm run dev     # builds, rebuilds on change, serves http://localhost:8000
+npm run build   # one build
+npm run langs   # refreshes the full language list from Wikipedia, then builds
+```
 
-The whole project is build around 3 mediawiki apis. One Opensearch and two query. This is a rough sketch and lot of unfinished parts can be found in this. 
+The build inlines and minifies everything into `index.html`, and writes `sw.js` and `langs.txt`, all at the repo root. It fails if `index.html` is over 14 KB gzipped, the size that fits in the first round trip.
 
-###Cons of Wikilite
+**Don't edit `index.html`, `sw.js` or `langs.txt` directly. Run `npm run build` and commit them with your source changes.** GitHub Pages serves these files from the root of `master`, so the live site only changes when they do.
 
-I think the whole wikilite project is against the idea of anybody can contribute to wikipedia. Wikilite is extracting the information from wikipedia and present in a faster way. But to edit you must go to wikipedia itself. So it is against the collaborative property of wikipedia. But we can make reach to more people and make it better. 
+## How it works
 
+The app calls the MediaWiki API directly from the browser:
 
-##Usage of Wikilite
------------------
-In the big textbox you can start typing. An autocomplete box will appear with suggestions from wikipieda like google suggest. If you can move mouse over the line a short description will appear on the rightside . A link to wikipedia article is also included in that. If you want to search with a text in wikipedia then click on search button. A search result (10 Results) will be presented below the big input box. If you click readmore then the text will be presented in distraction free reading mode.
+| Feature | API |
+| --- | --- |
+| Suggestions | `generator=prefixsearch` with `prop=description` |
+| Search results | `list=search` |
+| Text article | `prop=extracts` |
+| Article with images | `action=parse` |
+| Same article in another language | `prop=langlinks` |
+| Full language list | `langs.txt` on the site, or `action=sitematrix` when opened from disk |
 
-###Distraction Free Reading
-------------------------
-Distraction free reading mode created to read the content without any other distractions on the website. No Images, no links, no Infobox, only content. In wikipedia usually you stuck with lot of images internlinks (The better way to connect information) but here you and the content only. You can always go to wikipedia for full article. 
+Search is kept light in these ways:
 
-This is created from the Wikitextextract. So lot of limitation is there. But this is only a concept. Can improve later.
+- It waits for a pause in typing and cancels requests that are out of date.
+- It filters results it already has when typing only narrows them.
+- It asks the browser and Wikimedia's CDN to cache responses.
 
-##Credits
--------
+The interface text is English only. Article content is in the chosen language.
 
-- Manojk [http://ml.wikisource.org/User:Manojk], 
-- Viswettan[http://en.wikipedia.org/wiki/User:Viswaprabha], 
-- SMC[http://smc.org.in], 
-- Santhosh Thottingal [http://wikimediafoundation.org/wiki/User:Sthottingal-WMF] 
-- Anivar [http://en.wikipedia.org/wiki/User:AniVar], 
-- Vijayettan [https://en.wikipedia.org/wiki/User:Vijayakumarblathur]
-and other friends in wikipedia and SMC. 
+## About Wikilite
 
-##Greetings
-All my greetings to wikimania 2015 [http://wikimania2015.wikimedia.org/] and all the maniacs.
+The idea came from the question [Will Wikipedia survive for the next billion users?](https://meta.wikimedia.org/wiki/Talk:2015_Strategy/Community_consultation) Wikipedia can be slow on poor connections, especially in rural India, so quick access to its content matters.
 
-##License
----------
+Wikilite is for reading. To edit an article, use the Wikipedia link at the end of each page.
 
-GNU GPL v3 is the license except jQuery. for jQuery license go [https://jquery.org/license/]
+## Contributors
 
+[Ranjith Siji](https://en.wikipedia.org/wiki/User:Ranjithsiji). Suggestions to ranjith dot sajeev at gmail dot com.
 
+Blog: [Smashing Web](http://smashingweb.info)
+
+## Credits
+
+- [Manojk](http://ml.wikisource.org/User:Manojk)
+- [Viswettan](http://en.wikipedia.org/wiki/User:Viswaprabha)
+- [SMC](http://smc.org.in)
+- [Santhosh Thottingal](http://wikimediafoundation.org/wiki/User:Sthottingal-WMF)
+- [Anivar](http://en.wikipedia.org/wiki/User:AniVar)
+- [Vijayettan](https://en.wikipedia.org/wiki/User:Vijayakumarblathur)
+
+And other friends in Wikipedia and SMC. Greetings to [Wikimania 2015](http://wikimania2015.wikimedia.org/) and all the maniacs.
+
+## License
+
+GNU GPL v3

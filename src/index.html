@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="{{CSP}}">
+<title>WikiLite</title>
+<meta name="description" content="A fast, lightweight Wikipedia reader for slow internet connections">
+<link rel="icon" href="data:,">
+<style>{{CSS}}</style>
+</head>
+<body class="home">
+<header>
+	<div class="opts">
+		<label><input id="img" type="checkbox"> Images</label>
+		<label><input id="dark" type="checkbox"> Dark</label>
+		<select id="lang" aria-label="Wikipedia language"><option value="en">English</option></select>
+	</div>
+	<a id="home" href="#">Wiki Lite</a>
+	<p id="info">Just start typing to search in English Wikipedia</p>
+	<form id="form" role="search" action="https://en.wikipedia.org/w/index.php">
+		<input id="q" name="search" type="search" dir="auto" aria-label="Search Wikipedia" autocomplete="off" autocapitalize="off" spellcheck="false" role="combobox" aria-expanded="false" aria-controls="sug" aria-autocomplete="list">
+		<button>Search</button>
+		<div id="sug" role="listbox" hidden></div>
+	</form>
+</header>
+<main id="main"><noscript><p>Search goes straight to Wikipedia without JavaScript.</p></noscript></main>
+<script>{{JS}}</script>
+</body>
+</html>

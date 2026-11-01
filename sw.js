@@ -1,0 +1,1 @@
+self.addEventListener("install",()=>self.skipWaiting()),self.addEventListener("activate",t=>t.waitUntil(self.clients.claim())),self.addEventListener("fetch",t=>{if(t.request.mode!=="navigate")return;const n=fetch(t.request).then(async e=>(e.ok&&await(await caches.open("shell")).put("./",e.clone()),e));t.waitUntil(n.catch(()=>{})),t.respondWith(caches.match("./").then(e=>e||n))});

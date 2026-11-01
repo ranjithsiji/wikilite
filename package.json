@@ -1,0 +1,15 @@
+{
+  "name": "wikilite",
+  "private": true,
+  "description": "A fast, lightweight Wikipedia reader for slow internet connections",
+  "license": "GPL-3.0-only",
+  "type": "module",
+  "scripts": {
+    "build": "node build.js",
+    "dev": "node build.js --serve",
+    "langs": "node build.js --langs"
+  },
+  "devDependencies": {
+    "esbuild": "0.28.2"
+  }
+}
